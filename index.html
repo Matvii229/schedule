@@ -3,144 +3,206 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Розклад та Домашнє завдання</title>
+  <title>Розклад групи ПД12 та Домашнє завдання</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       background-color: #f4f4f9;
       color: #333;
       margin: 0;
-      padding: 16px;
-      max-width: 600px;
+      padding: 12px;
+      max-width: 1200px;
       margin-left: auto;
       margin-right: auto;
     }
     h1 {
-      text-align: center;
-      font-size: 22px;
-      color: #007aff;
-      margin-bottom: 20px;
+      font-size: 20px;
+      color: #1d3557;
+      margin-bottom: 15px;
     }
-    .days-nav {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      margin-bottom: 16px;
-      padding-bottom: 4px;
-    }
-    .day-btn {
-      padding: 10px 16px;
-      border: none;
-      border-radius: 10px;
-      background: #e4e4e7;
-      color: #333;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-    .day-btn.active {
-      background: #007aff;
-      color: #ffffff;
-    }
-    .card {
+    .day-section {
       background: #ffffff;
-      border-radius: 12px;
-      padding: 14px;
-      margin-bottom: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
     }
-    .subject-name {
+    .day-title {
       font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 8px;
+      font-weight: bold;
+      color: #457b9d;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #f1faee;
+      padding-bottom: 6px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid #e0e0e0;
+      padding: 8px;
+      vertical-align: middle;
+    }
+    th {
+      background-color: #f8f9fa;
+      text-align: left;
+      color: #6c757d;
+      font-size: 13px;
+    }
+    .lesson-num {
+      width: 40px;
+      text-align: center;
+      font-weight: bold;
+      color: #555;
+    }
+    .lesson-time {
+      width: 80px;
+      font-size: 12px;
+      color: #666;
+    }
+    .lesson-info {
+      line-height: 1.4;
+    }
+    .homework-cell {
+      width: 35%;
     }
     textarea {
       width: 100%;
-      border: 1px solid #d1d1d6;
-      border-radius: 8px;
-      padding: 8px;
+      height: 45px;
+      border: 1px solid #ced4da;
+      border-radius: 6px;
+      padding: 6px;
       box-sizing: border-box;
-      font-size: 14px;
+      font-size: 13px;
       resize: vertical;
       font-family: inherit;
     }
-    .save-btn {
-      margin-top: 8px;
-      padding: 8px 14px;
-      background: #34c759;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
+    textarea:focus {
+      border-color: #457b9d;
+      outline: none;
     }
-    .save-btn:active {
-      opacity: 0.8;
+    .save-hint {
+      font-size: 10px;
+      color: #28a745;
+      text-align: right;
+      margin-top: 2px;
+      display: none;
     }
   </style>
 </head>
 <body>
 
-  <h1>📅 Розклад занять</h1>
+  <h1>Розклад групи ПД12 з 06.11.2026 по 13.11.2026</h1>
   
-  <div class="days-nav" id="daysNav"></div>
   <div id="scheduleContainer"></div>
 
   <script>
-    const scheduleData = {
-      "Пн": ["Пара 1: Предмет", "Пара 2: Предмет", "Пара 3: Предмет"],
-      "Вт": ["Пара 1: Предмет", "Пара 2: Предмет", "Пара 3: Предмет"],
-      "Ср": ["Пара 1: Предмет", "Пара 2: Предмет", "Пара 3: Предмет"],
-      "Чт": ["Пара 1: Предмет", "Пара 2: Предмет", "Пара 3: Предмет"],
-      "Пт": ["Пара 1: Предмет", "Пара 2: Предмет", "Пара 3: Предмет"]
-    };
+    // Данные расписания точь-в-точь как на скриншоте колледжа
+    const scheduleData = [
+      {
+        date: "06.11.2026 П'ятниця",
+        lessons: [
+          { num: 1, time: "08:30<br>09:50", details: "Омельченко І.І. 12//Стекл//ФПС<br><strong>Захист України (Пр)</strong>" },
+          { num: 2, time: "10:00<br>11:20", details: "Сторожук М.В. 12//Стекл//ФПС<br><strong>Математика (алгебра і початки аналізу та геометрія) (Пр)</strong>" },
+          { num: 3, time: "11:50<br>13:10", details: "Дуброва Н.І. 12//Стекл//ФПС<br><strong>Українська література (Пр)</strong>" },
+          { num: 4, time: "13:20<br>14:40", details: "Круглов В.Ю. <strong>Фізична культура та виховання (Пр)</strong>" }
+        ]
+      },
+      {
+        date: "09.11.2026 Понеділок",
+        lessons: [
+          { num: 1, time: "08:30<br>09:50", details: "Циктор Ю.О. (підгр. 1) 10В//ФПС — Інформатика (Пр)<br>Шрейнер С.В. (підгр. 2) 10-А//ФПС — Інформатика (Пр)" },
+          { num: 2, time: "10:00<br>11:20", details: "Мордованець В.І., Барасій В.Ю. 12//Стекл//ФПС<br><strong>Історія України (Пр)</strong>" },
+          { num: 3, time: "11:50<br>13:10", details: "Сидорчук І.С. 40//ФПС<br><strong>Зарубіжна література (Пр)</strong>" }
+        ]
+      },
+      {
+        date: "10.11.2026 Вівторок",
+        lessons: [
+          { num: 1, time: "08:30<br>09:50", details: "Дуброва Н.І. 12//Стекл//ФПС<br><strong>Українська література (Пр)</strong>" },
+          { num: 2, time: "10:00<br>11:20", details: "Тімофєєв Д.В. 12//Стекл//ФПС<br><strong>Громадянська освіта (Пр)</strong>" },
+          { num: 3, time: "11:50<br>13:10", details: "Попова А.В. 12//Стекл//ФПС<br><strong>Біологія і екологія (Пр)</strong>" }
+        ]
+      },
+      {
+        date: "11.11.2026 Середа",
+        lessons: [
+          { num: 1, time: "08:30<br>09:50", details: "Іванов І.А. 12//Стекл//ФПС<br><strong>Всесвітня історія (Пр)</strong>" },
+          { num: 2, time: "10:00<br>11:20", details: "Кочева В.В. 12//Стекл//ФПС<br><strong>Іноземна мова (Пр)</strong>" },
+          { num: 3, time: "11:50<br>13:10", details: "Мадє Л.Б. 7у//Коледж<br><strong>Фізика і астрономія (Пр)</strong>" }
+        ]
+      },
+      {
+        date: "12.11.2026 Четвер",
+        lessons: [
+          { num: 1, time: "08:30<br>09:50", details: "Слободенюк Н.П. 12//Стекл//ФПС<br><strong>Українська мова (Пр)</strong>" },
+          { num: 2, time: "10:00<br>11:20", details: "Хуторна Л.Г. 12//Стекл//ФПС<br><strong>Хімія (Пр)</strong>" },
+          { num: 3, time: "11:50<br>13:10", details: "Богданович В.І. 12//Стекл//ФПС<br><strong>Географія (Пр)</strong>" }
+        ]
+      },
+      {
+        date: "13.11.2026 П'ятниця",
+        lessons: [
+          { num: 1, time: "08:30<br>09:50", details: "Омельченко І.І. 12//Стекл//ФПС<br><strong>Захист України (Пр)</strong>" },
+          { num: 2, time: "10:00<br>11:20", details: "Сторожук М.В. 12//Стекл//ФПС<br><strong>Математика (алгебра і початки аналізу та геометрія) (Пр)</strong>" },
+          { num: 3, time: "11:50<br>13:10", details: "Дуброва Н.І. 12//Стекл//ФПС<br><strong>Українська література (Пр)</strong>" },
+          { num: 4, time: "13:20<br>14:40", details: "Круглов В.Ю. <strong>Фізична культура та виховання (Пр)</strong>" }
+        ]
+      }
+    ];
 
-    let selectedDay = "Пн";
+    const container = document.getElementById('scheduleContainer');
 
-    function renderDays() {
-      const nav = document.getElementById('daysNav');
-      nav.innerHTML = '';
-      Object.keys(scheduleData).forEach(day => {
-        const btn = document.createElement('button');
-        btn.className = `day-btn ${day === selectedDay ? 'active' : ''}`;
-        btn.innerText = day;
-        btn.onclick = () => {
-          selectedDay = day;
-          renderDays();
-          renderSchedule();
-        };
-        nav.appendChild(btn);
-      });
-    }
+    scheduleData.forEach((dayObj, dayIndex) => {
+      const dayDiv = document.createElement('div');
+      dayDiv.className = 'day-section';
+      
+      let tableHTML = `
+        <div class="day-title">${dayObj.date}</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Пара</th>
+              <th>Час</th>
+              <th>Викладач, аудиторія, предмет</th>
+              <th>Домашнє завдання</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
 
-    function renderSchedule() {
-      const container = document.getElementById('scheduleContainer');
-      container.innerHTML = '';
-      const subjects = scheduleData[selectedDay] || [];
+      dayObj.lessons.forEach((lesson, lessonIndex) => {
+        const storageKey = `hw_pd12_${dayIndex}_${lessonIndex}`;
+        const savedText = localStorage.getItem(storageKey) || '';
 
-      subjects.forEach((subject, index) => {
-        const key = `hw_${selectedDay}_${index}`;
-        const savedHw = localStorage.getItem(key) || '';
-
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <div class="subject-name">${index + 1}. ${subject}</div>
-          <textarea id="${key}" placeholder="Запишіть домашнє завдання тут...">${savedHw}</textarea>
-          <button class="save-btn" onclick="saveHomework('${key}')">Зберегти ДЗ</button>
+        tableHTML += `
+          <tr>
+            <td class="lesson-num">${lesson.num}</td>
+            <td class="lesson-time">${lesson.time}</td>
+            <td class="lesson-info">${lesson.details}</td>
+            <td class="homework-cell">
+              <textarea placeholder="Введіть ДЗ..." oninput="saveHw('${storageKey}', this)">${savedText}</textarea>
+              <div class="save-hint" id="hint_${storageKey}">Збережено ✓</div>
+            </td>
+          </tr>
         `;
-        container.appendChild(card);
       });
-    }
 
-    function saveHomework(key) {
-      const val = document.getElementById(key).value;
-      localStorage.setItem(key, val);
-      alert('Домашнє завдання збережено!');
-    }
+      tableHTML += `</tbody></table>`;
+      dayDiv.innerHTML = tableHTML;
+      container.appendChild(dayDiv);
+    });
 
-    renderDays();
-    renderSchedule();
+    function saveHw(key, element) {
+      localStorage.setItem(key, element.value);
+      const hint = document.getElementById(`hint_${key}`);
+      hint.style.display = 'block';
+      setTimeout(() => {
+        hint.style.display = 'none';
+      }, 1000);
+    }
   </script>
 
 </body>
